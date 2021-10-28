@@ -5,19 +5,21 @@ export function getRandomFromArray<T>(arr: T[]): T {
     return arr[Math.floor(arr.length * Math.random())]
 }
 
-export function getUniqCompliment(oldCompliments: string[]) {
-    let compliment = getRandomFromArray(compliments)
-    let foundCompliment = oldCompliments.find((item, id) => item === compliment)
+export function getRandomArrayIndex<T>(arr: T[]): number {
+    return Math.floor(arr.length * Math.random())
+}
+
+export function getUniqCompliment(oldCompliments: number[]) {
+    let complimentId = getRandomArrayIndex(compliments)
+    let foundCompliment = oldCompliments.find(id => id === complimentId)
     let count = 0
-    console.log('oldCompliments', oldCompliments)
-    console.log('foundCompliment', foundCompliment)
-    while (foundCompliment && count < compliments.length * 6) {
+
+    while (foundCompliment !== undefined && count < compliments.length * 6) {
         count++
-        compliment = getRandomFromArray(compliments)
-        foundCompliment = oldCompliments.find(item => item === compliment)
-        console.log(count)
+        complimentId = getRandomArrayIndex(compliments)
+        foundCompliment = oldCompliments.find(id => id === complimentId)
     }
-    return compliment
+    return {compliment: compliments[complimentId], complimentId}
 }
 
 // const youObjNoOfficial = {

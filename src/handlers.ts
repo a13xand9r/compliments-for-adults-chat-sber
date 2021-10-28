@@ -15,12 +15,13 @@ export const noMatchHandler: SaluteHandler = ({ req, res }) => {
 
 export const complimentHandler: SaluteHandler = ({ req, res, session }) => {
     // if (!session.oldCompliments) session.oldCompliments = []
-    const compliment = changeAppealText(getUniqCompliment(session.oldCompliments as string[]), req.request.payload.character.appeal)
+    const {compliment, complimentId} = getUniqCompliment(session.oldCompliments as number[])
+    const complimentMessage = changeAppealText(compliment, req.request.payload.character.appeal)
     //@ts-ignore
-    session.oldCompliments.push(compliment)
+    session.oldCompliments.push(complimentId)
     if (compliment){
-        res.setPronounceText(compliment)
-        res.appendBubble(compliment)
+        res.setPronounceText(complimentMessage)
+        res.appendBubble(complimentMessage)
         res.appendSuggestions(['Ещё', 'Хватит'])
     } else {
         res.setPronounceText('На сегодня у меня закончились комплименты')
