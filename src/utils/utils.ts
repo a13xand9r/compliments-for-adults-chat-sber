@@ -25,7 +25,7 @@ export function getUniqCompliment(oldCompliments: string[]) {
 //     'Вас': 'Тебя',
 // }
 const youObjOfficial = {
-    'Ты': 'Вы',
+    'Ты ': 'Вы ',
     'Твой': 'Ваш',
     'Твоего': 'Вашего',
     'Тебя': 'Вас',
