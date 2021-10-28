@@ -26,13 +26,13 @@ const userScenario = createUserScenario({
         handle: helloHandler,
         children: {
             Yes: {
-                match: req => text('да')(req) || text('начнем')(req),
+                match: req => text('да', {normalized: true})(req) || text('начнем', {normalized: true})(req) || text('давать', {normalized: true})(req),
                 handle: ({req, res}, dispatch) => {
                     dispatch && dispatch(['Compliment'])
                 }
             },
             No: {
-                match: text('нет'),
+                match: text('нет', {normalized: true}),
                 handle: ({res}) => {
                     res.appendBubble('Ну и ладно')
                     res.setPronounceText('Ну и ладно')
