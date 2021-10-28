@@ -13,6 +13,15 @@ export const noMatchHandler: SaluteHandler = ({ req, res }) => {
     res.appendBubble(keyset('404'))
 }
 
+export const helloHandler: SaluteHandler = ({ req, res }) => {
+    const keyset = req.i18n(dictionary)
+    const responseText = keyset('Привет')
+    res.setPronounceText(responseText)
+    res.appendBubble(responseText)
+    res.setAutoListening(true)
+    res.appendSuggestions(['Да', 'Хватит'])
+}
+
 export const complimentHandler: SaluteHandler = ({ req, res, session }) => {
     // if (!session.oldCompliments) session.oldCompliments = []
     const {compliment, complimentId} = getUniqCompliment(session.oldCompliments as number[])

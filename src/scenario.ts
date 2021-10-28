@@ -12,15 +12,35 @@ import {
     SaluteRequest
 } from '@salutejs/scenario'
 import { SaluteMemoryStorage } from '@salutejs/storage-adapter-memory'
-import { complimentHandler, noMatchHandler, runAppHandler, thanksHandler } from './handlers'
+import { complimentHandler, helloHandler, noMatchHandler, runAppHandler, thanksHandler } from './handlers'
 import model from './intents.json'
 // require('dotenv').config()
 
 const storage = new SaluteMemoryStorage()
 const intents = createIntents(model.intents)
-const { match, intent } = createMatchers<SaluteRequest, typeof intents>()
+const { text } = createMatchers<SaluteRequest, typeof intents>()
 
 const userScenario = createUserScenario({
+    Hello: {
+        match: text('привет'),
+        handle: helloHandler,
+        children: {
+            Yes: {
+                match: req => text('да')(req) || text('начнем')(req),
+                handle: ({req, res}, dispatch) => {
+                    dispatch && dispatch(['Compliment'])
+                }
+            },
+            No: {
+                match: text('нет'),
+                handle: ({res}) => {
+                    res.appendBubble('Ну и ладно')
+                    res.setPronounceText('Ну и ладно')
+                    res.finish()
+                }
+            }
+        }
+    },
     Compliment: {
         match: req => {
             return req.message.original_text.toLowerCase().includes('еще') || req.message.original_text.toLowerCase().includes('дальше') || req.message.original_text.toLowerCase().includes('ещё')
