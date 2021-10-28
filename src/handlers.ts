@@ -4,7 +4,7 @@ import { changeAppealText, getUniqCompliment } from './utils/utils'
 
 export const runAppHandler: SaluteHandler = ({ req, res, session }, dispatch) => {
     session.oldCompliments = []
-    dispatch && dispatch(['Compliment'])
+    dispatch && dispatch(['Hello'])
 }
 
 export const noMatchHandler: SaluteHandler = ({ req, res }) => {
