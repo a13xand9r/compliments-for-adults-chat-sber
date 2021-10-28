@@ -1,6 +1,6 @@
 import { SaluteHandler } from '@salutejs/scenario'
 import * as dictionary from './system.i18n'
-import { changeAppealText, getUniqCompliment } from './utils/utils'
+import { addSSML, changeAppealText, getUniqCompliment } from './utils/utils'
 
 export const runAppHandler: SaluteHandler = ({ req, res, session }, dispatch) => {
     session.oldCompliments = []
@@ -29,7 +29,7 @@ export const complimentHandler: SaluteHandler = ({ req, res, session }) => {
     //@ts-ignore
     session.oldCompliments.push(complimentId)
     if (compliment){
-        res.setPronounceText(complimentMessage)
+        res.setPronounceText(`<speak>${addSSML(complimentMessage)}</speak>`, {ssml: true})
         res.appendBubble(complimentMessage)
         res.appendSuggestions(['Ещё', 'Хватит'])
     } else {

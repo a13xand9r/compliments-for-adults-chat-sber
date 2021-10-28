@@ -79,3 +79,22 @@ export function changeAppealText(text: string, appeal: Character['appeal']): str
     return newText
 }
 
+const ssmlObject = {
+    'целую': 'целу\'ю'
+}
+
+export function addSSML(text: string): string {
+    let keys: string[]
+    let newText: string = text
+    keys = Object.keys(ssmlObject)
+    keys.forEach((key) => {
+        if (newText.toLowerCase().includes(key.toLowerCase())) {
+            //@ts-ignore
+            newText = newText.replace(key, ssmlObject[key])
+            //@ts-ignore
+            newText = newText.replace(key.toLowerCase(), ssmlObject[key].toLowerCase())
+        }
+    })
+    return newText
+}
+
