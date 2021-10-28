@@ -28,10 +28,12 @@ export const complimentHandler: SaluteHandler = ({ req, res, session }) => {
     }
 }
 
-export const thanksHandler: SaluteHandler = ({ req, res, session }) => {
+export const thanksHandler: SaluteHandler = ({ req, res }) => {
     const keyset = req.i18n(dictionary)
-    res.setPronounceText(keyset('Спасибо'))
-    res.appendBubble(keyset('Спасибо'))
+
+    const responseText = keyset('Спасибо')
+    res.setPronounceText(responseText)
+    res.appendBubble(responseText)
     res.appendSuggestions(['Ещё', 'Хватит'])
 }
 
