@@ -49,21 +49,21 @@ export function changeAppealText(text: string, appeal: Character['appeal']): str
     if (appeal === 'official') {
         keys = Object.keys(youObjOfficial)
         keys.forEach((key) => {
-            if (text.toLowerCase().includes(key.toLowerCase())) {
+            if (newText.toLowerCase().includes(key.toLowerCase())) {
                 //@ts-ignore
-                newText = text.replace(key, youObjOfficial[key])
+                newText = newText.replace(key, youObjOfficial[key])
                 //@ts-ignore
                 newText = newText.replace(key.toLowerCase(), youObjOfficial[key].toLowerCase())
             }
             if (newText.toLowerCase().includes(key.toLowerCase())) {
                 //@ts-ignore
-                newText = text.replace(key, youObjOfficial[key])
+                newText = newText.replace(key, youObjOfficial[key])
                 //@ts-ignore
                 newText = newText.replace(key.toLowerCase(), youObjOfficial[key].toLowerCase())
             }
             if (newText.toLowerCase().includes(key.toLowerCase())) {
                 //@ts-ignore
-                newText = text.replace(key, youObjOfficial[key])
+                newText = newText.replace(key, youObjOfficial[key])
                 //@ts-ignore
                 newText = newText.replace(key.toLowerCase(), youObjOfficial[key].toLowerCase())
             }
