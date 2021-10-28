@@ -7,7 +7,7 @@ export function getRandomFromArray<T>(arr: T[]): T {
 
 export function getUniqCompliment(oldCompliments: string[]) {
     let compliment = getRandomFromArray(compliments)
-    let foundCompliment = oldCompliments.find(item => item === compliment)
+    let foundCompliment = oldCompliments.find((item, id) => item === compliment)
     let count = 0
     console.log('oldCompliments', oldCompliments)
     console.log('foundCompliment', foundCompliment)

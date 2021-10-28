@@ -14,11 +14,11 @@ export const noMatchHandler: SaluteHandler = ({ req, res }) => {
 }
 
 export const complimentHandler: SaluteHandler = ({ req, res, session }) => {
-    if (!session.oldCompliments) session.oldCompliments = []
+    // if (!session.oldCompliments) session.oldCompliments = []
     const compliment = changeAppealText(getUniqCompliment(session.oldCompliments as string[]), req.request.payload.character.appeal)
+    //@ts-ignore
+    session.oldCompliments.push(compliment)
     if (compliment){
-        //@ts-ignore
-        session.oldCompliments.push(compliment)
         res.setPronounceText(compliment)
         res.appendBubble(compliment)
         res.appendSuggestions(['Ещё', 'Хватит'])
