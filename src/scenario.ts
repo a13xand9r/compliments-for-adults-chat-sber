@@ -23,7 +23,6 @@ const { match, intent } = createMatchers<SaluteRequest, typeof intents>()
 const userScenario = createUserScenario({
     Compliment: {
         match: req => {
-            console.log(req.message.original_text)
             return req.message.original_text.toLowerCase().includes('еще') || req.message.original_text.toLowerCase().includes('дальше') || req.message.original_text.toLowerCase().includes('ещё')
         },
         handle: complimentHandler

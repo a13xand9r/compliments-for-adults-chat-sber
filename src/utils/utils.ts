@@ -9,7 +9,8 @@ export function getUniqCompliment(oldCompliments: string[]) {
     let compliment = getRandomFromArray(compliments)
     let foundCompliment = oldCompliments.find(item => item === compliment)
     let count = 0
-
+    console.log('oldCompliments', oldCompliments)
+    console.log('foundCompliment', foundCompliment)
     while (foundCompliment && count < compliments.length * 6) {
         count++
         compliment = getRandomFromArray(compliments)
