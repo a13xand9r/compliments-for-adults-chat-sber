@@ -56,6 +56,14 @@ export function changeAppealText(text: string, appeal: Character['appeal']): str
                 newText = newText.replace(key.toLowerCase(), youObjOfficial[key].toLowerCase())
             }
         })
+        keys.forEach((key) => {
+            if (text.toLowerCase().includes(key.toLowerCase())) {
+                //@ts-ignore
+                newText = text.replace(key, youObjOfficial[key])
+                //@ts-ignore
+                newText = newText.replace(key.toLowerCase(), youObjOfficial[key].toLowerCase())
+            }
+        })
     }
     return newText
 }
