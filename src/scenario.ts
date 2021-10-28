@@ -14,6 +14,7 @@ import {
 import { SaluteMemoryStorage } from '@salutejs/storage-adapter-memory'
 import { complimentHandler, helloHandler, noMatchHandler, runAppHandler, thanksHandler } from './handlers'
 import model from './intents.json'
+import { closeApp } from './utils/utils'
 // require('dotenv').config()
 
 const storage = new SaluteMemoryStorage()
@@ -34,9 +35,10 @@ const userScenario = createUserScenario({
             No: {
                 match: text('нет', {normalized: true}),
                 handle: ({res}) => {
-                    res.appendBubble('Ну и ладно')
-                    res.setPronounceText('Ну и ладно')
+                    res.appendBubble('Тогда до встречи')
+                    res.setPronounceText('Тогда до встречи')
                     res.finish()
+                    closeApp(res.message)
                 }
             }
         }

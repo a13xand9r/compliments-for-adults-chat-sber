@@ -1,4 +1,4 @@
-import { Character } from '@salutejs/scenario';
+import { Character, NLPResponse } from '@salutejs/scenario';
 import { compliments } from './compliments';
 
 export function getRandomFromArray<T>(arr: T[]): T {
@@ -7,6 +7,11 @@ export function getRandomFromArray<T>(arr: T[]): T {
 
 export function getRandomArrayIndex<T>(arr: T[]): number {
     return Math.floor(arr.length * Math.random())
+}
+
+export const closeApp = (message: NLPResponse) => {
+    if (message.messageName === 'ANSWER_TO_USER')
+        message.payload.items.push({ command: { type: 'close_app'} })
 }
 
 export function getUniqCompliment(oldCompliments: number[]) {

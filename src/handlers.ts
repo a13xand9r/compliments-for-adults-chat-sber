@@ -19,11 +19,11 @@ export const helloHandler: SaluteHandler = ({ req, res }) => {
     res.setPronounceText(responseText)
     res.appendBubble(responseText)
     res.setAutoListening(true)
-    res.appendSuggestions(['Да', 'Хватит'])
+    res.appendSuggestions(['Да', 'Нет'])
 }
 
 export const complimentHandler: SaluteHandler = ({ req, res, session }) => {
-    // if (!session.oldCompliments) session.oldCompliments = []
+    if (!session.oldCompliments) session.oldCompliments = []
     const {compliment, complimentId} = getUniqCompliment(session.oldCompliments as number[])
     const complimentMessage = changeAppealText(compliment, req.request.payload.character.appeal)
     //@ts-ignore
